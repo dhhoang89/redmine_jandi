@@ -12,8 +12,8 @@ module RedmineDiscord
 
     def to_description_field
       if @issue.description.present?
-        description = "```#{@issue.description.gsub(/`/, "\u200b`")}```"
-        EmbedField.new('Description', description, false).to_hash
+        description = "`#{@issue.description.gsub(/`/, "\u200b`")}`"
+        EmbedField.new('Description', description).to_hash
       end
     end
 
@@ -35,7 +35,7 @@ module RedmineDiscord
           value = value.blank? ? nil : "`#{value}`"
         end
 
-        EmbedField.new(attribute_name, value, true).to_hash if value
+        EmbedField.new(attribute_name, value).to_hash if value
       }
     end
 
@@ -59,10 +59,10 @@ module RedmineDiscord
           new_value, old_value = [new_value, old_value].map do |issue|
             issue.blank? ? '`N/A`' : "[##{issue.id}](#{url_of issue.id})"
           end
-          EmbedField.new(attribute_root_name, "#{old_value} => #{new_value}", true).to_hash
+          EmbedField.new(attribute_root_name, "#{old_value} => #{new_value}").to_hash
         else
           embed_value = "`#{old_value || 'N/A'}` => `#{new_value || 'N/A'}`"
-          EmbedField.new(attribute_root_name, embed_value, true).to_hash
+          EmbedField.new(attribute_root_name, embed_value).to_hash
       end unless new_value == old_value
     end
 
@@ -122,3 +122,4 @@ module RedmineDiscord
     end
   end
 end
+

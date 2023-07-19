@@ -30,9 +30,11 @@ module RedmineDiscord
 
     def construct_webhook_body(embed_object)
       {
-          username: Setting.plugin_redmine_discord['webhook_username'],
-          avatar_url: Setting.plugin_redmine_discord['webhook_avatar_url'],
-          embeds: embed_object.to_embed_array
+          #username: Setting.plugin_redmine_discord['webhook_username'],
+          #avatar_url: Setting.plugin_redmine_discord['webhook_avatar_url'],
+          body: embed_object.get_body,
+          connectInfo: embed_object.to_embed_array
+          
       }
     end
 
@@ -44,3 +46,4 @@ module RedmineDiscord
     end
   end
 end
+

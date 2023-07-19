@@ -16,6 +16,10 @@ module RedmineDiscord
        }]
     end
 
+    def get_body
+      "[#{get_title_tag}](#{@wrapped_page.resolve_absolute_url}) #{@wrapped_page.to_heading_title}"
+    end
+
     def get_title_tag
       '[Wiki update]'
     end
@@ -25,7 +29,7 @@ module RedmineDiscord
       255
     end
 
-    def get_embed_fields
+    def get_fields
       [@wrapped_page.to_author_field]
     end
   end
@@ -40,7 +44,7 @@ module RedmineDiscord
       65535
     end
 
-    def get_embed_fields
+    def get_fields
       [
           @wrapped_page.to_author_field,
           RedmineDiscord::get_separator_field,

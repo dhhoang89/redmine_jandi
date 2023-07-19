@@ -20,15 +20,20 @@ module RedmineDiscord
       end
 
       heading_url = @wrapped_issue.resolve_absolute_url
-
-      [{
-           url: heading_url,
-           title: "[New issue] #{@wrapped_issue.to_heading_title}",
-           color: get_fields_color,
-           fields: fields
-       }]
+      fields
+#      [{
+#           url: heading_url,
+#           title: "[New issue] #{@wrapped_issue.to_heading_title}",
+#           color: get_fields_color,
+#           fields: fields
+#       }]
     end
-
+    def get_body
+      "[[New issue]](#{@wrapped_issue.resolve_absolute_url}) #{@wrapped_issue.to_heading_title}"
+    end
+    def get_fields
+      "#{@wrapped_issue.to_creation_information_fields.compact}"
+    end
     private
 
     def get_fields_color
@@ -52,13 +57,20 @@ module RedmineDiscord
       fields.push notes_field if notes_field
 
       heading_url = @wrapped_issue.resolve_absolute_url
-
-      [{
-           url: heading_url,
-           title: "#{get_title_tag} #{@wrapped_issue.to_heading_title}",
-           color: get_fields_color,
-           fields: fields
-       }]
+      fields
+#      [{
+#           url: heading_url,
+#           title: "#{get_title_tag} #{@wrapped_issue.to_heading_title}",
+#           color: get_fields_color,
+#           fields: fields
+#       }]
+    end
+    
+    def get_body
+      "[#{get_title_tag}](#{@wrapped_issue.resolve_absolute_url}) #{@wrapped_issue.to_heading_title}"
+    end
+    def get_fields
+      "#{@wrapped_issue.to_diff_fields}"
     end
 
     def get_title_tag
@@ -81,3 +93,4 @@ module RedmineDiscord
     end
   end
 end
+

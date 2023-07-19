@@ -1,16 +1,14 @@
 module RedmineDiscord
   class EmbedField
-    def initialize(name, value, inline)
-      @name = name
-      @value = value
-      @inline = inline
+    def initialize(title, description)
+      @title = title
+      @description = description
     end
 
     def to_hash
       {
-          name: @name,
-          value: @value,
-          inline: @inline
+          title: @title,
+          description: @description
       }
     end
   end
