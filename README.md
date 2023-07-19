@@ -6,8 +6,8 @@ via [Discord's Webhook API](https://discordapp.com/developers/docs/resources/web
 ### Installation
 1. Go to `<Redmine Dir>/plugins` and execute
     ```
-    git clone https://github.com/kory33/redmine_discord
-    cd ./redmine_discord
+    git clone https://github.com/kory33/redmine_jandi
+    cd ./redmine_jandi
     bundle install
     ```
 2. Restart Redmine
